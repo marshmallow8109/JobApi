@@ -8,6 +8,7 @@ const helmet = require("helmet");
 require("dotenv").config();
 const rateLimit = require("express-rate-limit");
 const connectDB = require("./ConnectDB/connect");
+const nodemailer = require("nodemailer");
 
 app.use(cors());
 app.use(express.json());
@@ -22,6 +23,33 @@ app.use(
   })
 );
 app.use("/", Router);
+
+//mailing route
+app.post("/mail", (req, res) => {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "1click9ja@gmail.com",
+      pass: "bmrcsvwsgzrjuelz",
+    },
+  });
+
+  let mailOption = {
+    from: req.body.email,
+    name: req.body.name,
+    to: `augustrush.ae@gmail.com`,
+    subject: "Contact Portfolio",
+    text: req.body.message,
+  };
+
+  transporter.sendMail(mailOption, function (err, data) {
+    if (err) {
+      res.status(500).send("something went wrong, try agian!");
+    } else {
+      res.status(200).send("Email sent!");
+    }
+  });
+});
 
 const start = async () => {
   try {

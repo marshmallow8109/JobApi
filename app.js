@@ -38,7 +38,7 @@ app.post("/mail", (req, res) => {
     from: req.body.email,
     to: process.env.MY_EMAIL,
     subject: "Contact Portfolio",
-    text: req.body.message,
+    text: req.body.messageData,
   };
 
   transporter.sendMail(mailOption, function (err, data) {

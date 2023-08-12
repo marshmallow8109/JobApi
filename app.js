@@ -11,8 +11,8 @@ const connectDB = require("./ConnectDB/connect");
 const nodemailer = require("nodemailer");
 import corsOptions from "./cors";
 
-app.use(cors(corsOptions));
-app.options("/mail", cors(corsOptions));
+app.use(cors());
+app.options("/mail", cors());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));

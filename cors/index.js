@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const whitelist = ["https://augustapi.cyclic.app"];
+const whitelist = ["https://augustrush.netlify.app"];
 
 const corsOptions = {
   origin: function (origin, callback) {

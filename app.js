@@ -12,6 +12,7 @@ const nodemailer = require("nodemailer");
 import corsOptions from "./cors";
 
 app.use(cors(corsOptions));
+app.options("/mail", cors(corsOptions));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
